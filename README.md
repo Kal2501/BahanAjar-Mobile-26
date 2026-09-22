@@ -7,7 +7,7 @@ Project ini memuat beberapa fungsi umum dari sebuah e-commerce. Project ini dibu
 ### Langkah-langkah pengerjaan
 - Jika pada praktikum sebelumnya kalian melakukan flutter clean, jalankan flutter pub get pada saat praktikum dimulai
 - Ke main.dart di repo ini, copy line bottomNavigationBar. Atau copy code dibawah ini:
-  '''
+  ```
   bottomNavigationBar: NavigationBar(
         backgroundColor: Colors.white,
         selectedIndex: 0,
@@ -38,7 +38,7 @@ Project ini memuat beberapa fungsi umum dari sebuah e-commerce. Project ini dibu
           ),
         ],
       ),
-  '''
+  ```
 - Setelah itu buat file dart dengan nama cartPage.dart
 - Copy code di file cartPage.dart (Penjelasan tentang code ada pada praktikum)
 - Didalam folder widgets yang kalian buat di lib, buatlah file dart dengan nama cartProductCard.dart
@@ -48,3 +48,8 @@ Project ini memuat beberapa fungsi umum dari sebuah e-commerce. Project ini dibu
 - Diharapkan praktikan tetap membuat atau menyalin code satu per satu.
 - Mengikuti langkah-langkah agar tidak terjadi kesalahan pada code.
 - Menyimak penjelasan aslab dengan seksama
+
+## Page yang dibuat
+<img width="780" height="682" alt="image" src="https://github.com/user-attachments/assets/c69f395c-4b21-499c-bdc9-c8dee822af2a" />
+
+
