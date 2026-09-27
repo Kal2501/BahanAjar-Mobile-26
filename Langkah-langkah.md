@@ -1,10 +1,6 @@
 # Project E-Commerce
 
-Panduan ini mengikuti pola langkah pada repository contoh:
-
-<https://github.com/Kal2501/BahanAjar-Mobile-26>
-
-Tujuannya adalah mengubah kode awal yang masih statis menjadi aplikasi yang memiliki state produk, stok, keranjang, pencarian, grand total, dan checkout.
+Mengubah kode awal yang masih statis menjadi aplikasi yang memiliki state produk, stok, keranjang, pencarian, grand total, dan checkout.
 
 # Langkah-Langkah
 
