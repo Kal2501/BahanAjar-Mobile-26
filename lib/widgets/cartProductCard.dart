@@ -8,6 +8,7 @@ class CartProductCard extends StatefulWidget {
     required this.quantity,
     required this.maxQuantity,
     required this.onQuantityChanged,
+    required this.onRemove,
     super.key,
   });
 
@@ -15,6 +16,7 @@ class CartProductCard extends StatefulWidget {
   final int quantity;
   final int maxQuantity;
   final ValueChanged<int> onQuantityChanged;
+  final VoidCallback onRemove;
 
   @override
   State<CartProductCard> createState() => _CartProductCardState();
@@ -95,7 +97,13 @@ class _CartProductCardState extends State<CartProductCard> {
               ],
             ),
           ),
-          const SizedBox(width: 20),
+          const SizedBox(width: 12),
+          IconButton(
+            onPressed: widget.onRemove,
+            tooltip: 'Hapus dari keranjang',
+            icon: const Icon(Icons.delete_outline),
+          ),
+          const SizedBox(width: 8),
           SizedBox(
             width: 56,
             height: 48,

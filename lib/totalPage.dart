@@ -66,21 +66,6 @@ class TotalPage extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: NavigationBar(
-        backgroundColor: Colors.white,
-        selectedIndex: 1,
-        onDestinationSelected: (index) {
-          if (index == 0) Navigator.popUntil(context, (route) => route.isFirst);
-        },
-        destinations: const [
-          NavigationDestination(icon: Icon(Icons.home), label: 'Beranda'),
-          NavigationDestination(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Keranjang',
-          ),
-          NavigationDestination(icon: Icon(Icons.person), label: 'Profil'),
-        ],
-      ),
     );
   }
 }
