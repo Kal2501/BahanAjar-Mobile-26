@@ -13,6 +13,22 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final image = product.imagePath.startsWith('http')
+        ? Image.network(
+            product.imagePath,
+            width: 120,
+            height: 120,
+            fit: BoxFit.cover,
+            errorBuilder: (_, _, _) => _imageFallback(),
+          )
+        : Image.asset(
+            product.imagePath,
+            width: 120,
+            height: 120,
+            fit: BoxFit.cover,
+            errorBuilder: (_, _, _) => _imageFallback(),
+          );
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -23,12 +39,7 @@ class ProductCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(
-            product.imagePath,
-            width: 120,
-            height: 120,
-            fit: BoxFit.cover,
-          ),
+          image,
           const SizedBox(width: 16),
           Expanded(
             child: Column(
@@ -81,6 +92,14 @@ class ProductCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _imageFallback() {
+    return const SizedBox(
+      width: 120,
+      height: 120,
+      child: Icon(Icons.image_not_supported_outlined, size: 40),
     );
   }
 }

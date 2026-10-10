@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-import 'package:pertemuan3stls/appShell.dart';
+import 'package:pertemuan3stls/authGate.dart';
 import 'package:pertemuan3stls/providers/cart_provider.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(
     MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => CartProvider())],
@@ -23,7 +30,7 @@ class MainApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
       ),
       debugShowCheckedModeBanner: false,
-      home: const AppShell(),
+      home: const AuthGate(),
     );
   }
 }

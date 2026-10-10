@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 
-import 'package:pertemuan3stls/main.dart';
+import 'package:pertemuan3stls/appShell.dart';
+import 'package:pertemuan3stls/models/product.dart';
 import 'package:pertemuan3stls/providers/cart_provider.dart';
 
 void main() {
@@ -18,8 +19,19 @@ void main() {
   ) async {
     await tester.pumpWidget(
       ChangeNotifierProvider(
-        create: (_) => CartProvider(),
-        child: const MainApp(),
+        create: (_) => CartProvider(
+          initialProducts: [
+            Product(
+              id: 'produk-1',
+              imagePath: 'assets/product.png',
+              name: 'Produk Satu',
+              stock: 5,
+              description: 'Deskripsi singkat produk satu',
+              price: 12000000,
+            ),
+          ],
+        ),
+        child: const MaterialApp(home: AppShell()),
       ),
     );
     await tester.pump();

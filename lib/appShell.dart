@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:pertemuan3stls/cartPage.dart';
 import 'package:pertemuan3stls/homePage.dart';
 import 'package:pertemuan3stls/providers/cart_provider.dart';
+import 'package:pertemuan3stls/profilePage.dart';
 import 'package:pertemuan3stls/totalPage.dart';
 
 class AppShell extends StatefulWidget {
@@ -16,7 +17,7 @@ class _AppShellState extends State<AppShell> {
   var selectedIndex = 0;
 
   void selectPage(int index) {
-    if (index < 2) setState(() => selectedIndex = index);
+    setState(() => selectedIndex = index);
   }
 
   @override
@@ -32,6 +33,7 @@ class _AppShellState extends State<AppShell> {
           );
         },
       ),
+      const ProfilePage(),
     ];
 
     return Scaffold(

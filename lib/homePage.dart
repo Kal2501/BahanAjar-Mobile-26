@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:pertemuan3stls/models/product.dart';
 import 'package:pertemuan3stls/providers/cart_provider.dart';
 import 'package:pertemuan3stls/widgets/productCard.dart';
 
@@ -18,8 +19,7 @@ class _HomePageState extends State<HomePage> {
     return Consumer<CartProvider>(
       builder: (context, cart, child) {
         final visibleProducts = cart.products.where((product) {
-          return product.stock > 0 &&
-              product.name.toLowerCase().contains(searchQuery);
+          return product.name.toLowerCase().contains(searchQuery);
         }).toList();
 
         return SafeArea(
@@ -30,33 +30,59 @@ class _HomePageState extends State<HomePage> {
                     setState(() => searchQuery = value.toLowerCase()),
               ),
               Expanded(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 32),
-                    child: Column(
-                      children: [
-                        for (
-                          var index = 0;
-                          index < visibleProducts.length;
-                          index++
-                        ) ...[
-                          ProductCard(
-                            product: visibleProducts[index],
-                            onAddToCart: () =>
-                                cart.addToCart(visibleProducts[index]),
-                          ),
-                          if (index < visibleProducts.length - 1)
-                            const SizedBox(height: 28),
-                        ],
-                      ],
-                    ),
-                  ),
-                ),
+                child: _ProductContent(cart: cart, products: visibleProducts),
               ),
             ],
           ),
         );
       },
+    );
+  }
+}
+
+class _ProductContent extends StatelessWidget {
+  const _ProductContent({required this.cart, required this.products});
+
+  final CartProvider cart;
+  final List<Product> products;
+
+  @override
+  Widget build(BuildContext context) {
+    if (cart.isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (cart.loadError != null) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(32),
+          child: Text(
+            'Produk tidak dapat dimuat dari Firebase.\n${cart.loadError}',
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
+    }
+
+    if (products.isEmpty) {
+      return const Center(child: Text('Belum ada produk yang tersedia.'));
+    }
+
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32),
+        child: Column(
+          children: [
+            for (var index = 0; index < products.length; index++) ...[
+              ProductCard(
+                product: products[index],
+                onAddToCart: () => cart.addToCart(products[index]),
+              ),
+              if (index < products.length - 1) const SizedBox(height: 28),
+            ],
+          ],
+        ),
+      ),
     );
   }
 }
